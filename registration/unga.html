@@ -58,12 +58,9 @@
                     email: document.getElementById('email').value,
                     school: document.getElementById('school').value,
                     contactNo: document.getElementById('contactNo').value,
-                    preference1: document.getElementById('preference1').value,
-                    countryPreference1: document.getElementById('countryPreference1').value,
-                    preference2: document.getElementById('preference2').value,
-                    countryPreference2: document.getElementById('countryPreference2').value,
-                    preference3: document.getElementById('preference3').value,
-                    countryPreference3: document.getElementById('countryPreference3').value,
+                    fullName2: document.getElementById('fullName2').value,
+                    school2: document.getElementById('school2').value,
+                    contactNo2: document.getElementById('contactNo2').value, 
                     experienceDelegate: document.getElementById('experienceDelegate').value,
                     experienceOther: document.getElementById('experienceOther').value
                 };
@@ -80,26 +77,26 @@
                         const task = ref.child(name).put(file, `images/${file.name}`);
                         task
                             .then(async (snapshot) => {
-                               const url = await snapshot.ref.getDownloadURL();
-                               console.log(url);
-                               formObject.paymentScreenshotURL = url;
+                                const url = await snapshot.ref.getDownloadURL();
+                                console.log(url);
+                                formObject.paymentScreenshotURL = url;
 
-                               // Send data to Firestore
-                               try {
-                                   await db.collection('Registrations').add(formObject);
-                                   console.log('Document successfully written!');
-                                   alert('Data submitted successfully!');
-                                   this.reset(); // Optionally reset the form after successful submission
-                               } catch (error) {
-                                   console.error('Error writing document: ', error);
-                               }
+                                // Send data to Firestore
+                                try {
+                                    await db.collection('UNGA').add(formObject);
+                                    console.log('Document successfully written!');
+                                    alert('Data submitted successfully!');
+                                    this.reset(); // Optionally reset the form after successful submission
+                                } catch (error) {
+                                    console.error('Error writing document: ', error);
+                                }
                             });
 
 
 
 
                         // Get the download URL
-                       
+
                         console.log('File uploaded successfully! URL:', paymentScreenshotURL);
                     } catch (error) {
                         console.error('Error uploading file: ', error);
@@ -107,7 +104,7 @@
                         return; // Exit function if upload fails
                     }
                 }
-                else{
+                else {
                     alert("Please upload payment screenshot");
                 }
 
@@ -154,24 +151,24 @@
             <div class="registrationform">
                 <form class="form-horizontal" id="delRegister">
                     <fieldset>
-                        <legend>Delegate Registration Form <i class="fa fa-pencil pull-right"></i></legend>
+                        <legend>Delegate Registration Form - IPL<i class="fa fa-pencil pull-right"></i></legend>
 
                         <div class="form-group">
-                            <label for="fullName" class="col-lg-2 control-label">Name</label>
+                            <label for="fullName" class="col-lg-2 control-label">Name of Delegate 1</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control" id="fullName" placeholder="Full Name">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="email" class="col-lg-2 control-label">Email</label>
+                            <label for="email" class="col-lg-2 control-label">Email of Delegate 1</label>
                             <div class="col-lg-10">
                                 <input type="email" class="form-control" id="email" placeholder="Email">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="school" class="col-lg-2 control-label">School</label>
+                            <label for="school" class="col-lg-2 control-label">School of Delegate 1</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control" id="school"
                                     placeholder="College/Institution Name">
@@ -179,25 +176,36 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="contactNo" class="col-lg-2 control-label">Contact No.</label>
+                            <label for="contactNo" class="col-lg-2 control-label">Phone No. of Delegate 1</label>
                             <div class="col-lg-10">
                                 <input type="number" class="form-control" id="contactNo" placeholder="Mobile Number">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="preference1" class="col-lg-2 control-label">Preference 1</label>
+                            <label for="fullName2" class="col-lg-2 control-label">Name of Delegate 2</label>
                             <div class="col-lg-10">
-                                <select class="form-control" id="preference1"
-                                    style="color: white; background-color: black;">
-                                    
-                                    <option>United Nations Commission on Status of Women</option>
-                                    
-                                    <option>All India Political Party Meet</option>
-                                    <option>International Press Corps</option>
-                                </select>
+                                <input type="text" class="form-control" id="fullName2" placeholder="Full Name">
                             </div>
                         </div>
+
+
+
+                        <div class="form-group">
+                            <label for="school2" class="col-lg-2 control-label">School of Delegate 2</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="school2"
+                                    placeholder="College/Institution Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactNo2" class="col-lg-2 control-label">Phone No. of Delegate 2</label>
+                            <div class="col-lg-10">
+                                <input type="number" class="form-control" id="contactNo2" placeholder="Mobile Number">
+                            </div>
+                        </div>
+
 
                         <div class="form-group">
                             <label for="countryPreference1" class="col-lg-2 control-label">Country Preference 1</label>
@@ -207,19 +215,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="preference2" class="col-lg-2 control-label">Preference 2</label>
-                            <div class="col-lg-10">
-                                <select class="form-control" id="preference2"
-                                    style="color: white; background-color: black;">
-                                    
-                                    <option>United Nations Commission on Status of Women</option>
-                                    
-                                    <option>All India Political Party Meet</option>
-                                    <option>International Press Corps</option>
-                                </select>
-                            </div>
-                        </div>
 
                         <div class="form-group">
                             <label for="countryPreference2" class="col-lg-2 control-label">Country Preference 2</label>
@@ -229,19 +224,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="preference3" class="col-lg-2 control-label">Preference 3</label>
-                            <div class="col-lg-10">
-                                <select class="form-control" id="preference3"
-                                    style="color: white;background-color: black;">
-                                    
-                                    <option>United Nations Commission on Status of Women</option>
-                                    
-                                    <option>All India Political Party Meet</option>
-                                    <option>International Press Corps</option>
-                                </select>
-                            </div>
-                        </div>
 
                         <div class="form-group">
                             <label for="countryPreference3" class="col-lg-2 control-label">Country Preference 3</label>
