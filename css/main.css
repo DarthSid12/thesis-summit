@@ -1472,6 +1472,16 @@ textarea.form-control {
       letter-spacing: 1px;
       border-radius: 5px;
 }
+.expand-on-hover {
+    /* width: 200px;
+    height: 200px;
+    background-color: lightblue; */
+    transition: transform 0.5s ease; /* Smooth transition */
+}
+
+.expand-on-hover:hover {
+    transform: scale(1.05); /* Slightly scale up */
+}
 /*register section*/
 #register{
   background: url(../img/slider/mun9.jpg);
@@ -1692,4 +1702,29 @@ width: 40%;
     margin-top: 10px;
     font-size: 18px;
     color: #00adb5;
+}
+
+swiper-container {
+  /* width: 18%; */
+  height: 40vh;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+swiper-slide {
+  text-align: center;
+  height: 40vh;
+
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+swiper-slide img {
+  display: block;
+  height: 40vh;
+
+  width: 100%;
+  /* height: 100%; */
+  object-fit: cover;
 }
