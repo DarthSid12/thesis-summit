@@ -571,8 +571,10 @@ h1.navbar-brand {
 }
 
 .service-item h3 {
-    font-size: 20px;
+    font-size: 24px;
     text-transform: uppercase;
+    color: #000;
+    font-weight: bold;
 }
 
 /*=================================================================
@@ -862,7 +864,8 @@ ul.external li a:hover {
 ==================================================================*/
 
 #social {
-    background-image: url(../img/slider/mun5.jpg);
+    background-image: url(../img/parallax/spacy.jpg);
+    /* background-image: url(../img/slider/mun5.jpg); */
     padding: 0;
 }
 
@@ -1447,12 +1450,17 @@ textarea.form-control {
     padding: 10%;
     height: 300px;
     margin-bottom: 5%;
-    background-color: rgba(0,0,0,.1);
+    background-color: #0a205a ;
+    /* background-image: url('../img/committees/spaceBox.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; */
     border-radius: 2%;
     box-shadow: inset 0 0 0 5px rgba(0,0,0,.1);
+    color: wheat;
 }
 .service-item:hover{
-  background-color: white;
+  background-color: #3a4c7a;
   transition: 0.3s;
 }
 .service-item button{
@@ -1460,6 +1468,7 @@ textarea.form-control {
       padding: 3% 10%;
       text-transform: uppercase;
       border: 1px solid black;
+      color: black;
       letter-spacing: 1px;
       border-radius: 5px;
 }
@@ -1652,4 +1661,35 @@ width: 40%;
     width: 250px;
     height: 250px;
   }
+}
+
+.countdown {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.time-box {
+    border: 2px solid #00adb5;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    height: 120px;
+    width: 170px;
+    color: #00adb5;
+}
+
+.time-box span {
+    display: block;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+
+.label {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #00adb5;
 }

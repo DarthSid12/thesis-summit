@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="https://www.w3.org/1999/xhtml">
+<head>
+    <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+    <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+    <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+    <!--[if IE 9]> <html class="no-js ie9 oldie" lang="en"> <![endif]-->
+    <meta charset="utf-8">
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>THESIS SUMMIT</title>
+    <!-- ============ Google fonts ============ -->
+    <link href='https://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet'
+        type='text/css' />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300,800'
+        rel='stylesheet' type='text/css' />
+    <!-- ============ Add custom CSS here ============ -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+      <link href="css/style.css" rel="stylesheet" type="text/css" />
+
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    
+    <script>
+      // Your Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDzjMt0DbuxENpRfhWLTCv_9rJbQhL0tsI",
+        authDomain: "thesis-summit.firebaseapp.com",
+        projectId: "thesis-summit",
+        storageBucket: "thesis-summit.appspot.com",
+        messagingSenderId: "309319885725",
+        appId: "1:309319885725:web:7d3ea404f1092fd964c574",
+        measurementId: "G-HSH3RR6RSF"
+      };
+    
+      
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    
+      // Initialize Firestore
+      var db = firebase.firestore();
+      
+      // Listen for form submit
+      document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('delRegister').addEventListener('submit', async function(e) {
+            e.preventDefault(); // Prevent default form submission
+    
+            // Collect form data
+            var formObject = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                school: document.getElementById('school').value,
+                contactNo: document.getElementById('contactNo').value,
+                preference1: document.getElementById('preference1').value,
+                countryPreference1: document.getElementById('countryPreference1').value,
+                preference2: document.getElementById('preference2').value,
+                countryPreference2: document.getElementById('countryPreference2').value,
+                preference3: document.getElementById('preference3').value,
+                countryPreference3: document.getElementById('countryPreference3').value,
+                experienceDelegate: document.getElementById('experienceDelegate').value,
+                experienceOther: document.getElementById('experienceOther').value
+            };
+    
+            // Send data to Firestore
+            try {
+                await db.collection('Registrations').add(formObject);
+                console.log('Document successfully written!');
+                alert('Data submitted successfully!');
+                this.reset(); // Optionally reset the form after successful submission
+            } catch (error) {
+                console.error('Error writing document: ', error);
+            }
+        });
+    });
+    </script>
+</head>
+<body>
+    <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
+    <div class="container">
+        <div class="navbar-header"><a class="navbar-brand" href="/">THESIS SUMMIT</a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse navbar-menubuilder">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a>Rise!</a>
+                </li>
+                <li><a>Speak!</a>
+                </li>
+                <li><a>Resolve!</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container" style="color: black;">
+           <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
+           <div id="banner">
+             <h1>Bootstrap <strong>Registration Form</strong> for .net developers</h1>
+
+            <h5><strong>aspxtemplates.com</strong></h5>
+
+           </div>
+
+
+            </div> -->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="registrationform">
+           <form class="form-horizontal" id="delRegister">
+    <fieldset>
+        <legend>Delegate Registration Form <i class="fa fa-pencil pull-right"></i></legend>
+
+        <div class="form-group">
+            <label for="fullName" class="col-lg-2 control-label">Name</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="fullName" placeholder="Full Name">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email" class="col-lg-2 control-label">Email</label>
+            <div class="col-lg-10">
+                <input type="email" class="form-control" id="email" placeholder="Email">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="school" class="col-lg-2 control-label">School</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="school" placeholder="College/Institution Name">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="contactNo" class="col-lg-2 control-label">Contact No.</label>
+            <div class="col-lg-10">
+                <input type="number" class="form-control" id="contactNo" placeholder="Mobile Number">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="preference1" class="col-lg-2 control-label">Preference 1</label>
+            <div class="col-lg-10">
+                <select class="form-control" id="preference1" style="color: white; background-color: black;">
+                    <option>United Nation General Assembly</option>
+                    <option>United Nations Commission on Status of Women</option>
+                    <option>IPL Auction House</option>
+                    <option>All India Political Party Meet</option>
+                    <option>International Press Corps</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="countryPreference1" class="col-lg-2 control-label">Country Preference 1</label>
+            <div class="col-lg-10">
+                <textarea class="form-control" rows="1" id="countryPreference1" placeholder="Country name"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="preference2" class="col-lg-2 control-label">Preference 2</label>
+            <div class="col-lg-10">
+                <select class="form-control" id="preference2" style="color: white; background-color: black;">
+                    <option>United Nation General Assembly</option>
+                    <option>United Nations Commission on Status of Women</option>
+                    <option>IPL Auction House</option>
+                    <option>All India Political Party Meet</option>
+                    <option>International Press Corps</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="countryPreference2" class="col-lg-2 control-label">Country Preference 2</label>
+            <div class="col-lg-10">
+                <textarea class="form-control" rows="1" id="countryPreference2" placeholder="Country name"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="preference3" class="col-lg-2 control-label">Preference 3</label>
+            <div class="col-lg-10">
+                <select class="form-control" id="preference3" style="color: white;background-color: black;">
+                    <option>United Nation General Assembly</option>
+                    <option>United Nations Commission on Status of Women</option>
+                    <option>IPL Auction House</option>
+                    <option>All India Political Party Meet</option>
+                    <option>International Press Corps</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="countryPreference3" class="col-lg-2 control-label" >Country Preference 3</label>
+            <div class="col-lg-10">
+                <textarea class="form-control" rows="1" id="countryPreference3" placeholder="Country name"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="experienceDelegate" class="col-lg-2 control-label">Experience as Delegate</label>
+            <div class="col-lg-10">
+                <textarea class="form-control" rows="3" id="experienceDelegate"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="experienceOther" class="col-lg-2 control-label">Other Relevant Experience</label>
+            <div class="col-lg-10">
+                <textarea class="form-control" rows="3" id="experienceOther"></textarea>
+            </div>
+        </div>
+
+        <br>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="reset" class="btn btn-warning">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+         </div>
+
+
+
+         </div>
+        </div>
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/jquery.backstretch.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            'use strict';
+
+            /* ========================== */
+            /* ::::::: Backstrech ::::::: */
+            /* ========================== */
+            // You may also attach Backstretch to a block-level element
+//            <!-- $.backstretch(
+       // [
+   //         "img/space.jpg",
+ //           "img/moon.jpg"
+     //   ],
+
+        //{
+          //  duration: 4500,
+            //fade: 1500
+//        }
+  //  ); -->
+        </script>
+
+</body>
+</html>

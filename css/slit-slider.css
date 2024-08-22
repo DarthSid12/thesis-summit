@@ -157,13 +157,15 @@
 }
 
 .bg-img-1 {
-	background-image: url(../img/slider/mun2.jpg);
+	background-image: url(../img/slider/global.jpg);
+	/* background-image: url(../img/slider/mun2.jpg); */
 }
 .bg-img-2 {
-	background-image: url(../img/slider/mun7.jpg);
+	background-image: url(../img/slider/space.png);
+	/* background-image: url(../img/slider/mun7.jpg); */
 }
 .bg-img-3 {
-	background-image: url(../img/slider/mun4.jpg);
+	background-image: url(../img/slider/moon.webp);
 }
 
 
@@ -192,7 +194,7 @@
 	-ms-animation: fadeOut 1s ease-in-out both;
 	animation: fadeOut 1s ease-in-out both;
 }
-.sl-trans-back-elems .caption-content span,,
+.sl-trans-back-elems .caption-content span,
 .sl-trans-back-elems .caption-content a {
 	-webkit-animation: fadeOut 1s linear both;
 	-moz-animation: fadeOut 1s linear both;
