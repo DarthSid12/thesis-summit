@@ -151,7 +151,7 @@
             <div class="registrationform">
                 <form class="form-horizontal" id="delRegister">
                     <fieldset>
-                        <legend>Delegate Registration Form - IPL<i class="fa fa-pencil pull-right"></i></legend>
+                        <legend>Delegate Registration Form - UNGA<div style="width: 40px;"></div> <button type="button" class="qr-button" onclick="openPopup()">GET PAYMENT QR</button><i class="fa fa-pencil pull-right"></i></legend>
 
                         <div class="form-group">
                             <label for="fullName" class="col-lg-2 control-label">Name of Delegate 1</label>
@@ -271,9 +271,20 @@
 
         </div>
     </div>
+    <div id="qrPopup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <img src="img/qr.png" alt="QR Code">
+            <p>Dhairya Vasudeva</p>
+            <p>UPI ID: dhairya@paytm</p>
+            <p>Amount: ₹1,950.00</p>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js" type="text/javascript"></script>
     <script src="js/jquery.backstretch.js" type="text/javascript"></script>
+
     <script type="text/javascript">
         'use strict';
 
