@@ -597,8 +597,8 @@ The CSW is instrumental in promoting women’s rights, documenting the reality o
         </div>
         <div>
           <swiper-container effect="slide" autoplay-delay="3000" autoplay-disable-on-interaction="false"
-            autoplay-reverse-direction="true" class="mySwiper" pagination="true" navigation="true" loop="true"
-            pagination-clickable="true" space-between="30" slides-per-view="5" speed="500">
+            autoplay-reverse-direction="true" class="mySwiper desktopSwiper" pagination="true" navigation="true" loop="true"
+            pagination-clickable="true" breakpoints="" space-between="30" slides-per-view="5" speed="500">
             <swiper-slide> <img src="img/secGen/sec (1).jpg"> </swiper-slide>
             <swiper-slide> <img src="img/secGen/sec (2).jpg"> </swiper-slide>
             <swiper-slide> <img src="img/secGen/sec (3).jpg"> </swiper-slide>
@@ -625,6 +625,35 @@ The CSW is instrumental in promoting women’s rights, documenting the reality o
             <swiper-slide> <img src="img/secGen/sec (24).jpg"> </swiper-slide>
             <swiper-slide> <img src="img/secGen/sec (25).jpg"> </swiper-slide>
           </swiper-container>
+          <swiper-container effect="slide" autoplay-delay="3000" autoplay-disable-on-interaction="false"
+          autoplay-reverse-direction="true" class="mySwiper mobileSwiper" pagination="true" navigation="true" loop="true"
+          pagination-clickable="true" breakpoints="" space-between="30" slides-per-view="2" speed="500">
+          <swiper-slide> <img src="img/secGen/sec (1).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (2).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (3).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (4).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (5).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (6).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (7).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (8).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (9).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (10).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (11).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (12).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (13).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (14).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (15).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (16).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (17).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (18).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (19).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (20).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (21).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (22).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (23).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (24).jpg"> </swiper-slide>
+          <swiper-slide> <img src="img/secGen/sec (25).jpg"> </swiper-slide>
+        </swiper-container>
         </div>
 
       </div>
@@ -719,9 +748,29 @@ The CSW is instrumental in promoting women’s rights, documenting the reality o
   <!-- Custom Functions -->
   <script src="js/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
-
+  
   <script>
     new WOW().init();
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+  
+      function handleResize() {
+          if (window.innerWidth < 768) {
+              document.querySelector('.mobileSwiper').style.display = 'block';
+              document.querySelector('.desktopSwiper').style.display = 'none';
+          } else {
+              document.querySelector('.mobileSwiper').style.display = 'none';
+              document.querySelector('.desktopSwiper').style.display = 'block';
+          }
+      }
+  
+      // Initial check
+      handleResize();
+  
+      // Listen to resize events
+      window.addEventListener('resize', handleResize);
+  });
   </script>
 </body>
 

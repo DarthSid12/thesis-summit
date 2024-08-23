@@ -115,27 +115,36 @@
 </head>
 
 <body>
-    <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
+    <div id="custom-bootstrap-menu" class="navbar navbar-default" role="navigation">
         <div class="container">
-            <div class="navbar-header"><a class="navbar-brand" href="/">THESIS SUMMIT</a>
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span
-                        class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            <div class="navbar-header" style="display: flex; align-items: center;">
+                <!-- Back Button -->
+                <a href="/" class="navbar-back-button" style="display: flex; align-items: center; color:rgba(255, 255, 255,.8); margin-left:20px">
+                    <span class="glyphicon glyphicon-chevron-left" style="font-size: 18px;"></span> <!-- Icon size adjusted -->
+                </a>
+                
+                <!-- Brand Name -->
+                <img src="../img/logo.png" class="head-logo" style="height: 40px; width: 40px;"><a class="navbar-brand" href="/">THESIS SUMMIT</a>
+                
+                <!-- Toggle Button for Mobile View -->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
             </div>
+    
+            <!-- Navbar Menu Items -->
             <div class="collapse navbar-collapse navbar-menubuilder">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a>Rise!</a>
-                    </li>
-                    <li><a>Speak!</a>
-                    </li>
-                    <li><a>Resolve!</a>
-                    </li>
+                    <li><a>Rise!</a></li>
+                    <li><a>Speak!</a></li>
+                    <li><a>Resolve!</a></li>
                 </ul>
             </div>
         </div>
     </div>
-
     <div class="container" style="color: black;">
         <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
            <div id="banner">
