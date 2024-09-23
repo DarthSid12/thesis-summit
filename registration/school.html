@@ -24,7 +24,7 @@
     <link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
     <script>
@@ -42,6 +42,23 @@
 
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+        //Sign in
+        firebase.auth().signInAnonymously()
+            .then(() => {
+                // Signed in..
+                console.log(3);
+                console.log("sign in")
+            })
+            .catch((error) => {
+                console.log(4);
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorMessage);
+                console.log(errorCode);
+
+                // ...
+            });
+        console.log(4);
 
         // Initialize Firestore
         var db = firebase.firestore();
@@ -79,35 +96,35 @@
                     const file = fileInput.files[0];
                     const name = +new Date() + "-" + file.name;
                     let paymentScreenshotURL = '';
-    
+
                     if (file) {
                         try {
                             // Create a storage reference
                             const task = ref.child(name).put(file, `images/${file.name}`);
                             task
                                 .then(async (snapshot) => {
-                                   const url = await snapshot.ref.getDownloadURL();
-                                   console.log(url);
-                                   formObject.paymentScreenshotURL = url;
-    
-                                   // Send data to Firestore
-                                   try {
-                                       await db.collection('School').add(formObject);
-                                       console.log('Document successfully written!');
-                                       
-                                       alert('Data submitted successfully! Use MUNify.app to begin your research');
-                                       window.location.href='/';
-                                       this.reset(); // Optionally reset the form after successful submission
-                                   } catch (error) {
-                                       console.error('Error writing document: ', error);
-                                   }
+                                    const url = await snapshot.ref.getDownloadURL();
+                                    console.log(url);
+                                    formObject.paymentScreenshotURL = url;
+
+                                    // Send data to Firestore
+                                    try {
+                                        await db.collection('School').add(formObject);
+                                        console.log('Document successfully written!');
+
+                                        alert('Data submitted successfully! Use MUNify.app to begin your research');
+                                        window.location.href = '/';
+                                        this.reset(); // Optionally reset the form after successful submission
+                                    } catch (error) {
+                                        console.error('Error writing document: ', error);
+                                    }
                                 });
-    
-    
-    
-    
+
+
+
+
                             // Get the download URL
-                           
+
                             console.log('File uploaded successfully! URL:', paymentScreenshotURL);
                         } catch (error) {
                             console.error('Error uploading file: ', error);
@@ -115,7 +132,7 @@
                             return; // Exit function if upload fails
                         }
                     }
-                    else{
+                    else {
                         alert("Please upload payment screenshot");
                     }
 
@@ -188,18 +205,22 @@
                             Delegate Registration Form
                             <div style="width: 40px;"></div>
                             <div style="display: flex; align-items: center;">
-                                <button type="button" class="qr-button" onclick="openPopup()" style="padding-top: 10px; margin-right: 10px;">GET PAYMENT QR</button>
-                                <button type="button" class="qr-button" onclick="window.open('https://docs.google.com/spreadsheets/d/1tMtw07kEabyrpW5uCd_tFMHhcbMbZfxfH2bhAo3IxDs/edit?gid=707320341', '_blank')" style="padding-top: 10px;">COMMITTEE MATRIX</button>
+                                <button type="button" class="qr-button" onclick="openPopup()"
+                                    style="padding-top: 10px; margin-right: 10px;">GET PAYMENT QR</button>
+                                <button type="button" class="qr-button"
+                                    onclick="window.open('https://docs.google.com/spreadsheets/d/1tMtw07kEabyrpW5uCd_tFMHhcbMbZfxfH2bhAo3IxDs/edit?gid=707320341', '_blank')"
+                                    style="padding-top: 10px;">COMMITTEE MATRIX</button>
                             </div>
                             <i class="fa fa-pencil pull-right"></i>
                         </legend>
-                        
-                                   
+
+
 
                         <div class="form-group">
                             <label for="schoolName" class="col-lg-2 control-label">School Name</label>
                             <div class="col-lg-10">
-                                <input required type="text" class="form-control" id="schoolName" placeholder="School Name">
+                                <input required type="text" class="form-control" id="schoolName"
+                                    placeholder="School Name">
                             </div>
                         </div>
 
@@ -224,7 +245,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="contactNo" class="col-lg-2 control-label">Contact No. of Teacher In Charge</label>
+                            <label for="contactNo" class="col-lg-2 control-label">Contact No. of Teacher In
+                                Charge</label>
                             <div class="col-lg-10">
                                 <input required type="number" class="form-control" id="contactNo"
                                     placeholder="Mobile Number">
@@ -244,7 +266,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="delContactNo" class="col-lg-2 control-label">Contact No. of Head Delegate</label>
+                            <label for="delContactNo" class="col-lg-2 control-label">Contact No. of Head
+                                Delegate</label>
                             <div class="col-lg-10">
                                 <input required type="number" class="form-control" id="delContactNo"
                                     placeholder="Mobile Number">
@@ -260,19 +283,22 @@
                         <div class="form-group">
                             <label for="paymentScreenshot" class="col-lg-2 control-label">Payment Screenshot</label>
                             <div class="col-lg-10">
-                                <input required type="file" class="form-control" id="paymentScreenshot" accept="image/*">
+                                <input required type="file" class="form-control" id="paymentScreenshot"
+                                    accept="image/*">
                                 <!-- <textarea class="form-control" rows="3" id="paymentScreenshot"></textarea> -->
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="delegates" class="col-lg-2 control-label">Name of Delegates participating (with their committee preferences, if any) </label>
+                            <label for="delegates" class="col-lg-2 control-label">Name of Delegates participating (with
+                                their committee preferences, if any) </label>
                             <div class="col-lg-10">
                                 <textarea class="form-control" rows="5" id="delegates" required></textarea>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="preferences" class="col-lg-2 control-label">Portfolio Preferences (incase none, Input N/A)</label>
+                            <label for="preferences" class="col-lg-2 control-label">Portfolio Preferences (incase none,
+                                Input N/A)</label>
                             <div class="col-lg-10">
                                 <textarea class="form-control" rows="5" id="preferences" required></textarea>
                             </div>
