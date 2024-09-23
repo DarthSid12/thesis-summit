@@ -257,33 +257,32 @@
         </div>
         <div class="time-box">
           <span id="minutes">0</span>
-          <div class="label">MINUTES</div>
+          <div class="label" id="minutes-box">MINUTES</div>
         </div>
-        <div class="time-box">
+        <div class="time-box" id ='seconds-box'>
           <span id="seconds">0</span>
           <div class="label">SECONDS</div>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-4 col-sm-6 col-xs-12 text-center wow animated zoomIn expand-on-hover">
+        <div class="col-md-4 col-sm-6 col-xs-12 text-center wow animated zoomIn expand-on-hover committeeThingy">
           <img src="img/committees/aippm.png" style="width: 70%; 
           height: 70%;
           ">
           <h3 style="font-weight: 700; color:black; margin-left:15px;margin-right:15px; color:white;">Deliberation upon
             Reservation with emphasis on College Admissions</h3>
         </div>
-        <div class="col-md-4 col-sm-6 col-xs-12 text-center wow animated zoomIn expand-on-hover" data-wow-delay="0.2s">
+        <div class="col-md-4 col-sm-6 col-xs-12 text-center wow animated zoomIn expand-on-hover committeeThingy" data-wow-delay="0.2s">
           <img src="img/committees/unga.png" style="width: 70%; 
         height: 70%;
-        
         ">
           <h3 style="font-weight: 700; color:black; margin-left:15px;margin-right:15px; color:white;">Deliberation upon
             the legalisation of recreational drugs</h3>
           <h3 style="font-weight: 700; color:black; margin-left:15px;margin-right:15px; color:white;">(Double
             Delegation)</h3>
         </div>
-        <div class="col-md-4 col-sm-6 col-xs-12 text-center wow animated zoomIn expand-on-hover" data-wow-delay="0.4s">
+        <div class="col-md-4 col-sm-6 col-xs-12 text-center wow animated zoomIn expand-on-hover committeeThingy" data-wow-delay="0.4s">
           <img src="img/committees/uncsw.png" style="width: 70%; 
       height: 70%;
       
@@ -293,8 +292,8 @@
         </div>
       </div>
       <div class="row" style="margin-top:50px;">
-        <div class="col-md-2 col-sm-0 col-xs-0 text-center wow animated zoomIn"></div>
-        <div class="col-md-4 col-sm-6 col-xs-12 text-center wow animated zoomIn expand-on-hover">
+        <!-- <div class="col-md-2 col-sm-0 col-xs-0 text-center wow animated zoomIn"></div> -->
+        <div class="col-md-4 col-sm-6 col-xs-12 text-center wow animated zoomIn expand-on-hover committeeThingy">
           <img src="img/committees/ipl.png" style="width: 70%; 
           height: 70%;
           
@@ -302,13 +301,20 @@
           <h3 style="font-weight: 700; color:black; margin-left:15px;margin-right:15px; color:white;">Indian Premier
             League Auction House</h3>
         </div>
-        <div class="col-md-4 col-sm-6 col-xs-12 text-center wow animated zoomIn expand-on-hover" data-wow-delay="0.2s">
+        <div class="col-md-4 col-sm-6 col-xs-12 text-center wow animated zoomIn expand-on-hover committeeThingy" data-wow-delay="0.2s">
           <img src="img/committees/ipc.png" style="width: 70%; 
         height: 70%;
         
         ">
           <h3 style="font-weight: 700; color:black; margin-left:15px;margin-right:15px; color:white;">International
             Press Corps</h3>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12 text-center wow animated zoomIn expand-on-hover committeeThingy" data-wow-delay="0.4s">
+          <img src="img/committees/nhrc.jpg" style="width: 70%; 
+        height: 70%;
+        
+        ">
+          <h3 style="font-weight: 700; color:black; margin-left:15px;margin-right:15px; color:white;">Discussion upon the Marital rape laws</h3>
         </div>
       </div>
       <!-- <div class="container">
@@ -572,7 +578,7 @@ The CSW is instrumental in promoting women’s rights, documenting the reality o
     <!-- </section> -->
     <!-- <div style="background-image:url(img/space.jpg);border: 2px solid black;"> -->
       <section id="register"  >
-        <div class="overlay" style="">
+        <div class="overlay">
           <div class="container">
             <div class="row">
               <div class="sec-title text-center white wow animated fadeInDown" style="margin-top:5%;">
@@ -588,12 +594,26 @@ The CSW is instrumental in promoting women’s rights, documenting the reality o
             </div>
           </div>
         </div>
+        <div class="overlay">
+          <div class="container">
+            <div class="row">
+              <div class="sec-title text-center white wow animated fadeInDown" style="margin-top:5%;">
+                <h2>SCHOOL REGISTRATION</h2>
+              </div>
+              <div class="regForms">
+                <a href="registration/school.html" target="_blank" class="regFormsButton">Create School Team</a>
+                <!-- <a href="international-press-registration/index.htm" target="_blank" class="regFormsButton">International Press Registration</a>
+                <a href="EBregform/index.htm" target="_blank" class="regFormsButton">Executive Board Registration</a> -->
+              </div>
+            </div>
+          </div>
+        </div>
     <!-- end registration form -->
     </section>
     <section id="team" >
       <div class="slide-container">
         <div class="sec-title text-center white wow animated fadeInDown" style="margin-top:25px;">
-          <h2>MEET THE OC</h2>
+          <h2>MEET THE TEAM</h2>
         </div>
         <div>
           <swiper-container effect="slide" autoplay-delay="3000" autoplay-disable-on-interaction="false"
@@ -661,6 +681,7 @@ The CSW is instrumental in promoting women’s rights, documenting the reality o
     <!-- </div> -->
     <!-- Social section -->
 
+   
     <section id="social">
       <div class="overlay">
         <div class="container">
@@ -681,15 +702,20 @@ The CSW is instrumental in promoting women’s rights, documenting the reality o
                 <p class="organizerPost">Founder Secretary General</p><br>
                 <p class="organizerMail">+91 96673 65004</p><br>
               </li>
-              <li class="wow animated zoomIn" data-wow-delay="0.3s">
+              <!-- <li class="wow animated zoomIn" data-wow-delay="0.3s">
                 <p class="organizerName">Puney Adlakha</p><br>
                 <p class="organizerPost">Vice President</p><br>
                 <p class="organizerMail">+91 97179 91515</p><br>
-              </li>
+              </li> -->
             </ul>
 
           </div>
         </div>
+      </div>
+    </section>
+    <section id="munify">
+      <div style="display:flex;justify-content:center;align-items:center;">
+       <img src="img/munify_promo.png" style="width:300px; padding-right:20px">
       </div>
     </section>
     <!-- end Social section -->
@@ -706,17 +732,9 @@ The CSW is instrumental in promoting women’s rights, documenting the reality o
           </div>
           <div class="footer-social">
             <ul>
-              <li class="wow animated zoomIn"><a href="#"><i class="fa fa-facebook fa-3x"></i></a></li>
-              <li class="wow animated zoomIn" data-wow-delay="0.3s"><a href="#"><i class="fa fa-twitter fa-3x"></i></a>
-              </li>
-              <li class="wow animated zoomIn" data-wow-delay="0.6s"><a href="#"><i
-                    class="fa fa-google-plus fa-3x"></i></a></li>
-              <li class="wow animated zoomIn" data-wow-delay="0.9s"><a href="#"><i
+             
+              <li class="wow animated zoomIn" data-wow-delay="0.9s"><a href="https://www.instagram.com/thesis.summit/" target="_blank"><i
                     class="fa fa-instagram fa-3x"></i></a></li>
-              <li class="wow animated zoomIn" data-wow-delay="1.2s"><a href="#"><i class="fa fa-youtube fa-3x"></i></a>
-              </li>
-              <li class="wow animated zoomIn" data-wow-delay="1.2s"><a href="#"><i
-                    class="fa fa-map-marker fa-3x"></i></a></li>
             </ul>
           </div>
 
@@ -759,9 +777,14 @@ The CSW is instrumental in promoting women’s rights, documenting the reality o
           if (window.innerWidth < 768) {
               document.querySelector('.mobileSwiper').style.display = 'block';
               document.querySelector('.desktopSwiper').style.display = 'none';
+              document.querySelector('#seconds-box').style.display = 'none';
+              document.querySelector('#minutes-box').textContent='MINS';
+
           } else {
               document.querySelector('.mobileSwiper').style.display = 'none';
               document.querySelector('.desktopSwiper').style.display = 'block';
+              document.querySelector('#seconds-box').style.display = 'block';
+
           }
       }
   

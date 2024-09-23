@@ -55,6 +55,7 @@
                 // Collect form data
                 const formObject = {
                     fullName: document.getElementById('fullName').value,
+                   ref: document.getElementById('ref').value,
                     email: document.getElementById('email').value,
                     school: document.getElementById('school').value,
                     contactNo: document.getElementById('contactNo').value,
@@ -62,7 +63,8 @@
                     school2: document.getElementById('school2').value,
                     contactNo2: document.getElementById('contactNo2').value, 
                     experienceDelegate: document.getElementById('experienceDelegate').value,
-                    experienceOther: document.getElementById('experienceOther').value
+                    experienceOther: document.getElementById('experienceOther').value,
+                    timestamp: new Date()
                 };
 
                 // Get the file input element
@@ -85,7 +87,8 @@
                                 try {
                                     await db.collection('UNGA').add(formObject);
                                     console.log('Document successfully written!');
-                                    alert('Data submitted successfully!');
+                                    alert('Data submitted successfully! Use MUNify.app to begin your research');
+                                    window.location.href='/';
                                     this.reset(); // Optionally reset the form after successful submission
                                 } catch (error) {
                                     console.error('Error writing document: ', error);
@@ -160,26 +163,35 @@
             <div class="registrationform">
                 <form class="form-horizontal" id="delRegister">
                     <fieldset>
-                        <legend>Delegate Registration Form - UNGA<div style="width: 40px;"></div> <button type="button" class="qr-button" onclick="openPopup()">GET PAYMENT QR</button><i class="fa fa-pencil pull-right"></i></legend>
-
+                        <legend style="margin-top: 30px;">
+                            Delegate Registration Form
+                            <div style="width: 40px;"></div>
+                            <div style="display: flex; align-items: center;">
+                                <button type="button" class="qr-button" onclick="openPopup()" style="padding-top: 10px; margin-right: 10px;">GET PAYMENT QR</button>
+                                <button type="button" class="qr-button" onclick="window.open('https://docs.google.com/spreadsheets/d/1tMtw07kEabyrpW5uCd_tFMHhcbMbZfxfH2bhAo3IxDs/edit?gid=707320341', '_blank')" style="padding-top: 10px;">COMMITTEE MATRIX</button>
+                            </div>
+                            <i class="fa fa-pencil pull-right"></i>
+                        </legend>
+                        
+                                   
                         <div class="form-group">
                             <label for="fullName" class="col-lg-2 control-label">Name of Delegate 1</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="fullName" placeholder="Full Name">
+                                <input required type="text" class="form-control" id="fullName" placeholder="Full Name">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="email" class="col-lg-2 control-label">Email of Delegate 1</label>
                             <div class="col-lg-10">
-                                <input type="email" class="form-control" id="email" placeholder="Email">
+                                <input required type="email" class="form-control" id="email" placeholder="Email">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="school" class="col-lg-2 control-label">School of Delegate 1</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="school"
+                                <input required type="text" class="form-control" id="school"
                                     placeholder="College/Institution Name">
                             </div>
                         </div>
@@ -187,14 +199,14 @@
                         <div class="form-group">
                             <label for="contactNo" class="col-lg-2 control-label">Phone No. of Delegate 1</label>
                             <div class="col-lg-10">
-                                <input type="number" class="form-control" id="contactNo" placeholder="Mobile Number">
+                                <input required type="number" class="form-control" id="contactNo" placeholder="Mobile Number">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="fullName2" class="col-lg-2 control-label">Name of Delegate 2</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="fullName2" placeholder="Full Name">
+                                <input required type="text" class="form-control" id="fullName2" placeholder="Full Name">
                             </div>
                         </div>
 
@@ -203,7 +215,7 @@
                         <div class="form-group">
                             <label for="school2" class="col-lg-2 control-label">School of Delegate 2</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="school2"
+                                <input required type="text" class="form-control" id="school2"
                                     placeholder="College/Institution Name">
                             </div>
                         </div>
@@ -211,7 +223,7 @@
                         <div class="form-group">
                             <label for="contactNo2" class="col-lg-2 control-label">Phone No. of Delegate 2</label>
                             <div class="col-lg-10">
-                                <input type="number" class="form-control" id="contactNo2" placeholder="Mobile Number">
+                                <input required type="number" class="form-control" id="contactNo2" placeholder="Mobile Number">
                             </div>
                         </div>
 
@@ -219,7 +231,7 @@
                         <div class="form-group">
                             <label for="countryPreference1" class="col-lg-2 control-label">Country Preference 1</label>
                             <div class="col-lg-10">
-                                <textarea class="form-control" rows="1" id="countryPreference1"
+                                <textarea  required class="form-control" rows="1" id="countryPreference1"
                                     placeholder="Country name"></textarea>
                             </div>
                         </div>
@@ -228,7 +240,7 @@
                         <div class="form-group">
                             <label for="countryPreference2" class="col-lg-2 control-label">Country Preference 2</label>
                             <div class="col-lg-10">
-                                <textarea class="form-control" rows="1" id="countryPreference2"
+                                <textarea  required class="form-control" rows="1" id="countryPreference2"
                                     placeholder="Country name"></textarea>
                             </div>
                         </div>
@@ -241,11 +253,17 @@
                                     placeholder="Country name"></textarea>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label for="school3" class="col-lg-2 control-label">Referred by</label>
+                            <div class="col-lg-10">
+                                <input required type="text" class="form-control" id="ref"
+                                    placeholder="Person name">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="paymentScreenshot" class="col-lg-2 control-label">Payment Screenshot</label>
                             <div class="col-lg-10">
-                                <input type="file" class="form-control" id="paymentScreenshot" accept="image/*">
+                                <input required type="file" class="form-control" id="paymentScreenshot" accept="image/*">
                                 <!-- <textarea class="form-control" rows="3" id="paymentScreenshot"></textarea> -->
                             </div>
                         </div>
@@ -283,10 +301,10 @@
     <div id="qrPopup" class="popup">
         <div class="popup-content">
             <span class="close" onclick="closePopup()">&times;</span>
-            <img src="img/qr.png" alt="QR Code">
-            <p>Dhairya Vasudeva</p>
-            <p>UPI ID: dhairya@paytm</p>
-            <p>Amount: ₹1,950.00</p>
+            <img src="img/qr.jpg" alt="QR Code">
+            <p>Hardik Gopal Mittal</p>
+            <p>UPI ID: 91882697752@scb</p>
+            <p>Amount: ₹4,000.00</p>
         </div>
     </div>
     <script src="js/script.js"></script>

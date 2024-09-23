@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html
+<!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="https://www.w3.org/1999/xhtml">
@@ -47,74 +47,86 @@
         var db = firebase.firestore();
         const ref = firebase.storage().ref();
         const storage = firebase.storage();
+        let min = 100000;
+        let max = 999999;
+        let randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
         // Listen for form submit
         document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('delRegister').addEventListener('submit', async function (e) {
                 e.preventDefault(); // Prevent default form submission
-console.log("Running");
-                // Collect form data
-                const formObject = {
-                    fullName: document.getElementById('fullName').value,
-                    email: document.getElementById('email').value,
-                   ref: document.getElementById('ref').value,
+                if (this.checkValidity()) {
+                    // Form is valid, proceed with your JavaScript function
+                    console.log("Form is valid. Proceeding with submission...");
+                    // Your existing code to handle the form submission goes here
+                    const formObject = {
+                        schoolName: document.getElementById('schoolName').value,
+                        schoolEmail: document.getElementById('schoolEmail').value,
+                        teacherName: document.getElementById('teacherName').value,
+                        teacherEmail: document.getElementById('teacherEmail').value,
+                        contactNo: document.getElementById('contactNo').value,
+                        delName: document.getElementById('delName').value,
+                        delEmail: document.getElementById('delEmail').value,
+                        delContactNo: document.getElementById('delContactNo').value,
+                        noOfDelegates: document.getElementById('noOfDelegates').value,
+                        delegates: document.getElementById('delegates').value,
+                        preferences: document.getElementById('preferences').value,
+                        timestamp: new Date()
+                        // Optional field if exists                
+                    };
 
-                    school: document.getElementById('school').value,
-                    contactNo: document.getElementById('contactNo').value,
-                    fullName2: document.getElementById('fullName2').value,
-                    school2: document.getElementById('school2').value,
-                    contactNo2: document.getElementById('contactNo2').value, 
-                    fullName3: document.getElementById('fullName3').value,
-                    school3: document.getElementById('school3').value,
-                    contactNo3: document.getElementById('contactNo3').value,
-                    experienceDelegate: document.getElementById('experienceDelegate').value,
-                    experienceOther: document.getElementById('experienceOther').value,
-                    timestamp: new Date()
-                };
-
-                // Get the file input element
-                const fileInput = document.getElementById('paymentScreenshot');
-                const file = fileInput.files[0];
-                const name = +new Date() + "-" + file.name;
-                let paymentScreenshotURL = '';
-
-                if (file) {
-                    try {
-                        // Create a storage reference
-                        const task = ref.child(name).put(file, `images/${file.name}`);
-                        task
-                            .then(async (snapshot) => {
-                                const url = await snapshot.ref.getDownloadURL();
-                                console.log(url);
-                                formObject.paymentScreenshotURL = url;
-
-                                // Send data to Firestore
-                                try {
-                                    await db.collection('IPL').add(formObject);
-                                    console.log('Document successfully written!');
-                                    alert('Data submitted successfully!');
-                                    window.location.href='/';
-
-                                    this.reset(); // Optionally reset the form after successful submission
-                                } catch (error) {
-                                    console.error('Error writing document: ', error);
-                                }
-                            });
-
-
-
-
-                        // Get the download URL
-
-                        console.log('File uploaded successfully! URL:', paymentScreenshotURL);
-                    } catch (error) {
-                        console.error('Error uploading file: ', error);
-                        alert('Error submitting. Please try again.');
-                        return; // Exit function if upload fails
+                    // Get the file input element
+                    const fileInput = document.getElementById('paymentScreenshot');
+                    const file = fileInput.files[0];
+                    const name = +new Date() + "-" + file.name;
+                    let paymentScreenshotURL = '';
+    
+                    if (file) {
+                        try {
+                            // Create a storage reference
+                            const task = ref.child(name).put(file, `images/${file.name}`);
+                            task
+                                .then(async (snapshot) => {
+                                   const url = await snapshot.ref.getDownloadURL();
+                                   console.log(url);
+                                   formObject.paymentScreenshotURL = url;
+    
+                                   // Send data to Firestore
+                                   try {
+                                       await db.collection('School').add(formObject);
+                                       console.log('Document successfully written!');
+                                       
+                                       alert('Data submitted successfully! Use MUNify.app to begin your research');
+                                       window.location.href='/';
+                                       this.reset(); // Optionally reset the form after successful submission
+                                   } catch (error) {
+                                       console.error('Error writing document: ', error);
+                                   }
+                                });
+    
+    
+    
+    
+                            // Get the download URL
+                           
+                            console.log('File uploaded successfully! URL:', paymentScreenshotURL);
+                        } catch (error) {
+                            console.error('Error uploading file: ', error);
+                            alert('Error submitting. Please try again.');
+                            return; // Exit function if upload fails
+                        }
                     }
+                    else{
+                        alert("Please upload payment screenshot");
+                    }
+
+
+                } else {
+                    // Form is invalid, show validation errors
+                    console.log("Form is invalid. Please fill out all required fields.");
+                    // Optionally, trigger the browser's built-in validation UI
+                    this.reportValidity();
                 }
-                else {
-                    alert("Please upload payment screenshot");
-                }
+                // Collect form data
 
 
             });
@@ -127,13 +139,16 @@ console.log("Running");
         <div class="container">
             <div class="navbar-header" style="display: flex; align-items: center;">
                 <!-- Back Button -->
-                <a href="/" class="navbar-back-button" style="display: flex; align-items: center; color:rgba(255, 255, 255,.8); margin-left:20px">
-                    <span class="glyphicon glyphicon-chevron-left" style="font-size: 18px;"></span> <!-- Icon size adjusted -->
+                <a href="/" class="navbar-back-button"
+                    style="display: flex; align-items: center; color:rgba(255, 255, 255,.8); margin-left:20px">
+                    <span class="glyphicon glyphicon-chevron-left" style="font-size: 18px;"></span>
+                    <!-- Icon size adjusted -->
                 </a>
-                
+
                 <!-- Brand Name -->
-                <img src="../img/logo.png" class="head-logo" style="height: 40px; width: 40px;"><a class="navbar-brand" href="/">THESIS SUMMIT</a>
-                
+                <img src="../img/logo.png" class="head-logo" style="height: 40px; width: 40px;"><a class="navbar-brand"
+                    href="/">THESIS SUMMIT</a>
+
                 <!-- Toggle Button for Mobile View -->
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder">
                     <span class="sr-only">Toggle navigation</span>
@@ -142,7 +157,7 @@ console.log("Running");
                     <span class="icon-bar"></span>
                 </button>
             </div>
-    
+
             <!-- Navbar Menu Items -->
             <div class="collapse navbar-collapse navbar-menubuilder">
                 <ul class="nav navbar-nav navbar-right">
@@ -153,6 +168,7 @@ console.log("Running");
             </div>
         </div>
     </div>
+
     <div class="container" style="color: black;">
         <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
            <div id="banner">
@@ -181,114 +197,64 @@ console.log("Running");
                                    
 
                         <div class="form-group">
-                            <label for="fullName" class="col-lg-2 control-label">Name of Delegate 1</label>
+                            <label for="schoolName" class="col-lg-2 control-label">School Name</label>
                             <div class="col-lg-10">
-                                <input required type="text" class="form-control" id="fullName" placeholder="Full Name">
+                                <input required type="text" class="form-control" id="schoolName" placeholder="School Name">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="email" class="col-lg-2 control-label">Email of Delegate 1</label>
+                            <label for="schoolEmail" class="col-lg-2 control-label">School Email</label>
                             <div class="col-lg-10">
-                                <input required type="email" class="form-control" id="email" placeholder="Email">
+                                <input required type="email" class="form-control" id="schoolEmail" placeholder="Email">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="school" class="col-lg-2 control-label">School of Delegate 1</label>
+                            <label for="teacherName" class="col-lg-2 control-label">Teacher Name</label>
                             <div class="col-lg-10">
-                                <input required type="text" class="form-control" id="school"
-                                    placeholder="College/Institution Name">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="contactNo" class="col-lg-2 control-label">Phone No. of Delegate 1</label>
-                            <div class="col-lg-10">
-                                <input required type="number" class="form-control" id="contactNo" placeholder="Mobile Number">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="fullName2" class="col-lg-2 control-label">Name of Delegate 2</label>
-                            <div class="col-lg-10">
-                                <input required type="text" class="form-control" id="fullName2" placeholder="Full Name">
-                            </div>
-                        </div>
-
-
-
-                        <div class="form-group">
-                            <label for="school2" class="col-lg-2 control-label">School of Delegate 2</label>
-                            <div class="col-lg-10">
-                                <input required type="text" class="form-control" id="school2"
-                                    placeholder="College/Institution Name">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="contactNo2" class="col-lg-2 control-label">Phone No. of Delegate 2</label>
-                            <div class="col-lg-10">
-                                <input required type="number" class="form-control" id="contactNo2" placeholder="Mobile Number">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="fullName3" class="col-lg-2 control-label">Name of Delegate 3</label>
-                            <div class="col-lg-10">
-                                <input required type="text" class="form-control" id="fullName3" placeholder="Full Name">
-                            </div>
-                        </div>
-
-
-
-                        <div class="form-group">
-                            <label for="school3" class="col-lg-2 control-label">School of Delegate 3</label>
-                            <div class="col-lg-10">
-                                <input required type="text" class="form-control" id="school3"
-                                    placeholder="College/Institution Name">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="contactNo3" class="col-lg-2 control-label">Phone No. of Delegate 3</label>
-                            <div class="col-lg-10">
-                                <input required type="number" class="form-control" id="contactNo3" placeholder="Mobile Number">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="countryPreference1" class="col-lg-2 control-label">Team Preference 1</label>
-                            <div class="col-lg-10">
-                                <textarea class="form-control" rows="1" id="countryPreference1"
-                                    placeholder="Team name"></textarea>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="countryPreference2" class="col-lg-2 control-label">Team Preference 2</label>
-                            <div class="col-lg-10">
-                                <textarea class="form-control" rows="1" id="countryPreference2"
-                                    placeholder="Team name"></textarea>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="countryPreference3" class="col-lg-2 control-label">Team Preference 3</label>
-                            <div class="col-lg-10">
-                                <textarea class="form-control" rows="1" id="countryPreference3"
-                                    placeholder="Team name"></textarea>
+                                <input required type="text" class="form-control" id="teacherName"
+                                    placeholder="Teacher Name">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="school3" class="col-lg-2 control-label">Referred by</label>
+                            <label for="teacherEmail" class="col-lg-2 control-label">Teacher Email</label>
                             <div class="col-lg-10">
-                                <input required type="text" class="form-control" id="ref"
-                                    placeholder="Person name">
+                                <input required type="email" class="form-control" id="teacherEmail" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactNo" class="col-lg-2 control-label">Contact No. of Teacher In Charge</label>
+                            <div class="col-lg-10">
+                                <input required type="number" class="form-control" id="contactNo"
+                                    placeholder="Mobile Number">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="delName" class="col-lg-2 control-label">Name of Head Delegate</label>
+                            <div class="col-lg-10">
+                                <input required type="text" class="form-control" id="delName"
+                                    placeholder="Teacher Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="delEmail" class="col-lg-2 control-label">Email of Head Delegate</label>
+                            <div class="col-lg-10">
+                                <input required type="email" class="form-control" id="delEmail" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="delContactNo" class="col-lg-2 control-label">Contact No. of Head Delegate</label>
+                            <div class="col-lg-10">
+                                <input required type="number" class="form-control" id="delContactNo"
+                                    placeholder="Mobile Number">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="noOfDelegates" class="col-lg-2 control-label">Number of Delegates</label>
+                            <div class="col-lg-10">
+                                <input required type="number" class="form-control" id="noOfDelegates"
+                                    placeholder="Count">
                             </div>
                         </div>
                         <div class="form-group">
@@ -299,18 +265,16 @@ console.log("Running");
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="experienceDelegate" class="col-lg-2 control-label">Experience as
-                                Delegate</label>
+                            <label for="delegates" class="col-lg-2 control-label">Name of Delegates participating (with their committee preferences, if any) </label>
                             <div class="col-lg-10">
-                                <textarea class="form-control" rows="3" id="experienceDelegate" required></textarea>
+                                <textarea class="form-control" rows="5" id="delegates" required></textarea>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="experienceOther" class="col-lg-2 control-label">Other Relevant
-                                Experience</label>
+                            <label for="preferences" class="col-lg-2 control-label">Portfolio Preferences (incase none, Input N/A)</label>
                             <div class="col-lg-10">
-                                <textarea class="form-control" rows="3" id="experienceOther" required></textarea>
+                                <textarea class="form-control" rows="5" id="preferences" required></textarea>
                             </div>
                         </div>
 
@@ -335,7 +299,7 @@ console.log("Running");
             <img src="img/qr.jpg" alt="QR Code">
             <p>Hardik Gopal Mittal</p>
             <p>UPI ID: 91882697752@scb</p>
-            <p>Amount: ₹4,200.00</p>
+            <p>Amount: ₹2,000.00</p>
         </div>
     </div>
     <script src="js/script.js"></script>
